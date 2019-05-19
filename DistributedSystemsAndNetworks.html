@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.1.1">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.2.0">
     
     
       
@@ -40,9 +40,9 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/application.3020aac5.css">
+      <link rel="stylesheet" href="assets/stylesheets/application.572ca0f0.css">
       
-        <link rel="stylesheet" href="assets/stylesheets/application-palette.224b79ff.css">
+        <link rel="stylesheet" href="assets/stylesheets/application-palette.22915126.css">
       
       
         
@@ -51,7 +51,7 @@
       
     
     
-      <script src="assets/javascripts/modernizr.01ccdecf.js"></script>
+      <script src="assets/javascripts/modernizr.8c900955.js"></script>
     
     
       
@@ -64,9 +64,6 @@
     
     
       <link rel="stylesheet" href="stylesheets/extra.css">
-    
-    
-      
     
     
   </head>
@@ -106,19 +103,22 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
-            <span class="md-header-nav__topic">
-              Notes
-            </span>
-            <span class="md-header-nav__topic">
-              Distributed Systems & Networks
-            </span>
+            
+              <span class="md-header-nav__topic">
+                Notes
+              </span>
+              <span class="md-header-nav__topic">
+                Distributed Systems & Networks
+              </span>
+            
           
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
           
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
@@ -141,6 +141,7 @@
     </div>
   </div>
 </div>
+          
         
       </div>
       
@@ -284,8 +285,62 @@
                 <h1 id="distributed-systems-networks">Distributed Systems &amp; Networks<a class="headerlink" href="#distributed-systems-networks" title="Permanent link">⇦</a></h1>
 <details class="success"><summary>University course</summary><p>These notes were made for the University of Southampton COMP2207 module.</p>
 </details>
-<h1 id="unstructured-notes">Unstructured Notes<a class="headerlink" href="#unstructured-notes" title="Permanent link">⇦</a></h1>
-<details class="question"><summary>Link layer</summary><p>The link layer is the lowest layer. It handles linking two networked devices together so other layers don't need to worry what the connection is. It also includes error detection and handling (although higher layers do more of this too).</p>
+<details class="question"><summary>What are layers</summary><p>The OSI models defines 7 different layers which form a full network stack. </p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application</td>
+<td>The application layer is the final destination for data. It is what uses the data (ie a web browser).</td>
+</tr>
+<tr>
+<td>Presentation</td>
+<td>This layer converts data between data friendly for transportation and data friendly for the end application. An such a conversion would be encryption.</td>
+</tr>
+<tr>
+<td>Session</td>
+<td>When a client and server connect they establish a session and data related to this (such as timing tolerances) is handled here.</td>
+</tr>
+<tr>
+<td>Transport</td>
+<td>This layer handles how data should be sent, ie size of packets, fault tolerance etc. This is where TCP/UDP is.</td>
+</tr>
+<tr>
+<td>Network</td>
+<td>The network layer handles the underlying functionality of how packets get to their destination, ie routing and forwarding packets</td>
+</tr>
+<tr>
+<td>Data Link</td>
+<td>The link layer handles the conversion from digital data to a form friendly for the transport medium as well as providing error correction for the physical layer.</td>
+</tr>
+<tr>
+<td>Physical</td>
+<td>This is the final layer representing physical real world infrastructure such as the wiring or electrical connections.</td>
+</tr>
+</tbody>
+</table>
+<p>The TCI/IP model is the same except Application, Presentation and Session are all combined into Application. This is an example of how data flows through these layers using the TCP/IP model.</p>
+<p>Hardware: Data comes in from cable ⇢
+Link: Converted to digital representation ⇢
+Internet: Is the packet at the correct place ⇢
+Transport: Fault check and merge packets ⇢
+Application: Use the data for its intended purpose</p>
+</details>
+<details class="question"><summary>ARP (Address resolution protocol)</summary><p>As the link layer only has MAC addresses, we need a way to convert a MAC address into an IP address. This is what ARP does.</p>
+<p>A link layer broadcast asks connected devices if they know the IP for a given MAC address. Eventually (or not) a host replies informing which IP is associated with that MAC address.
+There are 4 different broadcast messages that can be sent:</p>
+<ul>
+<li>Unicast: Sent to a single recipient</li>
+<li>Broadcast: Sent to everyone connected</li>
+<li>Multicast: Sent to anyone who is interested</li>
+<li>Anycast: Sent to anyone (usually the closest), doesn't matter who as long as it reaches someone</li>
+</ul>
+<p>There are some vulneribiities in this protocol due to it's inherent trust of other hosts. Other hosts can spoof details and steal frames from others or, particularly low powered ones, can sleep and not respond to requests.</p>
 </details>
 <details class="tip"><summary>Source</summary><p><strong>General info</strong> lecture slides </p>
 </details>
@@ -352,17 +407,22 @@
           Material for MkDocs</a>
       </div>
       
+        
+      
     </div>
   </div>
 </footer>
       
     </div>
     
-      <script src="assets/javascripts/application.dc02f8ce.js"></script>
+      <script src="assets/javascripts/application.b41f3d20.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+    
       
     
   </body>
